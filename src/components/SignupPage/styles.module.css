@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.signupPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 32px;
+    color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.loginContainer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.inputLabel {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+    font-weight: 700;
+    display: block;
+    margin-top: 10px;
+}
+
+.inputText {
+    padding: 12px;
+    margin-bottom: 0px;
+    margin-top: 2px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.inputText:focus {
+    border-color: #6e8efb;
+    outline: none;
+    box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+}
+
+.signupBtn {
+    background-color: #6e8efb;
+    color: white;
+    padding: 12px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0px 4px 10px rgba(110, 142, 251, 0.3);
+}
+
+.signupBtn:hover {
+    background-color: #a777e3;
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(167, 119, 227, 0.5);
+}
+
+p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+a {
+    color: #6e8efb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #a777e3;
+    text-decoration: underline;
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}

@@ -1,0 +1,96 @@
+{
+    "cred": {
+        "username": "root",
+        "password": "ROOT",
+        "dbname": "moviedb"
+    },
+    "user": {
+        "primary_key": "username",
+        "username": "VARCHAR(200)",
+        "password": "VARCHAR(200)"
+    },
+    "movie": {
+        "primary_key": [
+            "id"
+        ],
+        "id": "INT",
+        "title": "VARCHAR(200)",
+        "type": "VARCHAR(20)",
+        "synopsis": "VARCHAR(2000)",
+        "release_year": "YEAR",
+        "poster_url": "VARCHAR(500)",
+        "video_url": "VARCHAR(500)",
+        "rating": "TINYINT",
+        "count": "INT"
+    },
+    "marked_movies": {
+        "primary_key": [
+            "user_name",
+            "movie_id"
+        ],
+        "foreign_key": {
+            "movie_id": [
+                "movie",
+                "id"
+            ],
+            "username": [
+                "user",
+                "username"
+            ]
+        },
+        "movie_id": "INT",
+        "username": "VARCHAR(200)"
+    },
+    "actor": {
+        "primary_key": [
+            "id"
+        ],
+        "id": "INT",
+        "name": "VARCHAR(200)"
+    },
+    "movie_actor": {
+        "primary_key": [
+            "movie_id",
+            "actor_id"
+        ],
+        "foreign_key": {
+            "movie_id": [
+                "movie",
+                "id"
+            ],
+            "actor_id": [
+                "actor",
+                "id"
+            ]
+        },
+        "movie_id": "INT",
+        "actor_id": "INT"
+    },
+    "genre": {
+        "primary_key": [
+            "id"
+        ],
+        "id": "INT",
+        "name": "VARCHAR(100)"
+    },
+    "movie_genre": {
+        "primary_key": [
+            "movie_id",
+            "genre_id"
+        ],
+        "foreign_key": {},
+        "movie_id": "INT",
+        "genre_id": "INT"
+    },
+    "test": {
+        "id": 81594921,
+        "title": "Spider-Man: Across the Spider-Verse",
+        "type": "Movie",
+        "synopsis": "Family blues. A villain bent on revenge. A Multiverse full of Spider-People. But the real challenge for Miles Morales? Figuring out who he wants to be.",
+        "release_year": 2023,
+        "poster_url": "https://occ-0-2120-2119.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABaK3lV1uRAtg5OnYt7Uf70fYj1fsW8M-zcWhuACyGqg7-fG3m5NH1TDXPdPPfdBQn0H8YGBjnC6kgioCvcHc2afIDKD6Elor-6qY.jpg?r=1df",
+        "video_url": "",
+        "rating": 9,
+        "count": 2811
+    }
+}

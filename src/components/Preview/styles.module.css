@@ -1,0 +1,127 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+body {
+    background: linear-gradient(135deg, #89c1f1, #ffffff);
+    font-family: 'Roboto', sans-serif;
+    overflow: visible;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgb(248, 250, 250);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 30px auto;
+    color: #333;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.3s ease;
+}
+
+.imageContainer {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+}
+
+.preViewImage {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.preViewImage:hover {
+    transform: scale(1.08);
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.synopsis {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.releaseYear,
+.rating {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.actorsContainer,
+.genresContainer {
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.actor,
+.genre {
+    background-color: #e0e7ff;
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin: 5px;
+    font-size: 1rem;
+    color: #222;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.actor:hover,
+.genre:hover {
+    background-color: #c0d4ff;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+button {
+    background-color: crimson;
+}
+
+button:hover {
+    background-color: #2575fc;
+    transform: scale(1.05);
+}
+
+.watchButton {
+    background-color: #dc1d40;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.watchButton:hover {
+    background-color: #3b5bde;
+    transform: translateY(-2px);
+}

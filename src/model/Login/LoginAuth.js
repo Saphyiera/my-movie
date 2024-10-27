@@ -1,14 +1,13 @@
 export function validatePassword(password) {
     let res = "";
-    // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character
     const minLength = 8;
     const upperCase = /[A-Z]/;
     const lowerCase = /[a-z]/;
     const numbers = /[0-9]/;
     const specialChar = /[!@#$%^&*(),.?":{}|<>]/;
-    const xssDangerousChars = /[<>"/'&]/; // XSS-prone characters
-    const sqlInjectionChars = /[;'"--]/; // SQL injection characters and comments
-    const sqlKeywords = /\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|DROP|ALTER|CREATE|EXEC|EXECUTE|AND|OR|NOT|LIKE)\b/i; // Common SQL keywords
+    const xssDangerousChars = /[<>"/'&]/;
+    const sqlInjectionChars = /[;'"--]/;
+    const sqlKeywords = /\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|DROP|ALTER|CREATE|EXEC|EXECUTE|AND|OR|NOT|LIKE)\b/i;
 
     if (password.length < minLength) {
         res = "Password must be at least 8 characters long.";

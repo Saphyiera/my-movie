@@ -1,7 +1,7 @@
 function SearchPage() {
     return (
         <div className="SearchPage">
-            <h1>Search Page</h1>
+            <h1>Search Bar</h1>
         </div>
     );
 }

@@ -1,0 +1,75 @@
+.episodesContainer {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.episodesTitle {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+}
+
+.episodesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.episodeItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.episodeNumber {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.episodePoster {
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+}
+
+.episodeItem:hover {
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: default;
+}
+
+.navigationContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.navButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.navButton:not(:disabled):hover {
+    background-color: #0056b3;
+}

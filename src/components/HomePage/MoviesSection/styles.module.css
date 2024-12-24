@@ -1,0 +1,210 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #007BFF;
+    display: inline-block;
+}
+
+.typeSelector {
+    margin-right: 10px;
+}
+
+.selectBox {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.selectBox:hover {
+    border-color: #007BFF;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.rowContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 14.8vw;
+    height: 350px;
+    border-radius: 12px;
+    background-color: #9ed1f1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itemContainer:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.poster {
+    width: 100%;
+    height: 80%;
+    flex-grow: 1;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+.movie {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.paginationButton {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.paginationButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.paginationButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.currentPage {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 10px;
+}
+
+
+.loading {
+    font-size: 1.5rem;
+    color: #555;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.goToPage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.pageInput {
+    width: 80px;
+    padding: 6px;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.pageInput:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0px 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+.goToPageButton {
+    background-color: rgb(67, 129, 243);
+    /* Green color for Go button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.goToPageButton:hover {
+    background-color: #218838;
+    /* Darker shade on hover */
+    transform: scale(1.05);
+}
+
+.goToPageButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.errorMessage {
+    color: #dc3545;
+    /* Red color for error */
+    font-size: 0.9rem;
+    margin-top: 8px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

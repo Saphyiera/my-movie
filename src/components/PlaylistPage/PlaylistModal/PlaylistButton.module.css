@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.enabledButton {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.enabledButton:hover {
+    background-color: #45a049;
+}
+
+.disabledButton {
+    padding: 10px 20px;
+    background-color: #ccc;
+    color: #666;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-weight: 600;
+    font-size: 24px;
+}

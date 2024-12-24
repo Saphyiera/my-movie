@@ -29,3 +29,9 @@ detail.json
 netflix.json
 the_flash.json
 netflixDetails.json
+/src/backend/scrapper/data
+
+.env
+
+#key
+*.pem

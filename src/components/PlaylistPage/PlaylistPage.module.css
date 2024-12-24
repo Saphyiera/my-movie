@@ -1,0 +1,70 @@
+.container {
+    margin: 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.loader,
+.error,
+.noPlaylists,
+.loginPrompt {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.playlistItem {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlistItem:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginPrompt {
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    margin-top: 50vh;
+    font-weight: 600;
+}
+
+.createPlaylistContainer {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.playlistInput {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 4;
+}
+
+.createPlaylistButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex: 1;
+}
+
+.createPlaylistButton:hover {
+    background-color: #45a049;
+}

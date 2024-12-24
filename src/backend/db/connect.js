@@ -3,24 +3,18 @@ require('dotenv').config()
 
 const connection = mysql.createConnection(
     {
-        // host: process.env.DB_HOST,
-        // user: process.env.DB_USERNAME,
-        // password: process.env.DB_PASSWORD
-        host: 'localhost',
-        user: 'root',
-        password: 'ROOT',
+        host: process.env.DB_HOST,
+        user: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
         database: 'movie'
     }
 )
 
 connection.connect((error) => {
-    if (error) throw error;
-    console.log("Connected");
+    if (error) {
+        console.log("Cant connect to movie database!")
+    };
+    console.log("Connected to movie database!");
 })
 
-const query = 'select * from movie';
-connection.query(query, (req, res) => {
-    res.send(res)
-})
-
-
+module.exports = connection;

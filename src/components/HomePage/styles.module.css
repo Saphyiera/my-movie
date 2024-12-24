@@ -1,0 +1,37 @@
+.backgroundImage {
+    width: 99vw;
+    height: 80vh;
+}
+
+.welcome {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin: 40px auto;
+    line-height: 1.5;
+    text-transform: capitalize;
+    padding: 20px;
+
+    /* Adding glowing and color-changing effects for light blue background */
+    animation: glowEffect 3s infinite;
+    background: linear-gradient(90deg, #0a004a, #4600a6, #00ffcc);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Keyframe for glowing animation */
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 5px #4600a6, 0 0 10px #0a004a, 0 0 20px #00ffcc, 0 0 30px #00b3cc;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #4600a6, 0 0 30px #0a004a, 0 0 40px #00b3cc;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #00b3cc, 0 0 10px #4600a6, 0 0 20px #0a004a, 0 0 30px #00ffcc;
+    }
+}

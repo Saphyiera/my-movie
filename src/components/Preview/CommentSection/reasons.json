@@ -1,0 +1,44 @@
+{
+    "reportReasons": [
+        {
+            "id": 0,
+            "reason": "Racist"
+        },
+        {
+            "id": 1,
+            "reason": "Spam"
+        },
+        {
+            "id": 2,
+            "reason": "Offensive Language"
+        },
+        {
+            "id": 3,
+            "reason": "Hatred"
+        },
+        {
+            "id": 4,
+            "reason": "Irrelevant Content"
+        },
+        {
+            "id": 5,
+            "reason": "Harassment"
+        },
+        {
+            "id": 6,
+            "reason": "Spoiler"
+        },
+        {
+            "id": 7,
+            "reason": "Misinformation"
+        },
+        {
+            "id": 8,
+            "reason": "Personal Information"
+        },
+        {
+            "id": 9,
+            "reason": "Other"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+.successContainer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f0f9f0;
+    border: 1px solid #d4ecd4;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.successMessage {
+    color: #2d6a2d;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.navigateButton {
+    background-color: #2d6a2d;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigateButton:hover {
+    background-color: #255824;
+}

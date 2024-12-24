@@ -1,0 +1,97 @@
+.container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.loader {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.movieList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.movieItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.movieDetails {
+    display: flex;
+    align-items: center;
+}
+
+.movieDetails:hover {
+    cursor: pointer;
+}
+
+.movieImage {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.movieText {
+    flex-grow: 1;
+}
+
+.removeButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.removeButton:hover {
+    background-color: darkred;
+}
+
+.noMovies {
+    text-align: center;
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.removePlaylistButton {
+    background-color: #ff6347;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.removePlaylistButton:hover {
+    background-color: #d54e29;
+}

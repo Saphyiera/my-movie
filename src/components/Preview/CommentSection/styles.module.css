@@ -1,0 +1,298 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+.container {
+    margin: 1rem auto;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+}
+
+.loading,
+.error,
+.noComments {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #444;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    margin: 1rem 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.userContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: space-between;
+}
+
+.userAndPfp {
+    display: flex;
+    align-items: center;
+}
+
+.pfpContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: 2px solid #007bff;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.text {
+    font-size: 1.2rem;
+    color: #444;
+    margin: 0.5rem 0;
+}
+
+.postDate {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
+.reasons {
+    font-size: 0.9rem;
+    color: #aa0000;
+    font-style: italic;
+    margin: 0.5rem 0;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+}
+
+.reportButton,
+.showButton,
+.deleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    margin-left: auto;
+    margin-right: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deleteButton {
+    color: white;
+}
+
+.reportButton {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.reportButton:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(255, 77, 77, 0.4);
+}
+
+.showButton {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.showButton:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.4);
+}
+
+.reportButton::before,
+.showButton::before {
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-size: 1.2rem;
+    content: "";
+}
+
+.reportButton::before {
+    content: "\f024";
+}
+
+.showButton::before {
+    content: "\f06e";
+}
+
+.noComments {
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.paginationButton {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.paginationButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pageInfo {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.postCommentContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.textarea {
+    width: 98.5%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: none;
+}
+
+.postButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.postButton:hover {
+    background-color: #0056b3;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.checkboxContainer {
+    margin: 10px 0;
+}
+
+.reasonCheckbox {
+    margin-right: 10px;
+}
+
+.checkboxLabel {
+    font-size: 16px;
+}
+
+.otherReasonInput {
+    width: 96%;
+    height: 80px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submitReportButton {
+    background-color: red;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submitReportButton:hover {
+    background-color: darkred;
+}
+
+.closeButton {
+    background-color: gray;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background-color: darkgray;
+}

@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import styles from './styles.module.css';
 import MoviesSection from "./MoviesSection/MoviesSection";
 import Padding from "../Utils/Padding/Padding"
+import MoviesSuggestion from "../Personalization/MoviesSuggestion/MoviesSuggestion";
 
 function HomePage() {
     const [count, setCount] = useState({
@@ -38,7 +39,7 @@ function HomePage() {
         <>
             <div style={{ backgroundColor: 'white', margin: '20px', borderRadius: '20px' }}>
 
-                <h1 className={styles.welcome}>Skibidi movie</h1>
+                <h1 className={styles.welcome}>Welcome to Smothvie</h1>
             </div>
             <SearchBar />
             <img
@@ -46,6 +47,7 @@ function HomePage() {
                 alt="Spider-Man Background"
                 className={styles.backgroundImage}
             />
+            <MoviesSuggestion />
             <MoviesSection title="Recent Movies" count={count} />
             <MoviesSection title="Top Rated Movies" count={count} />
             <MoviesSection title="All Movies" count={count} />

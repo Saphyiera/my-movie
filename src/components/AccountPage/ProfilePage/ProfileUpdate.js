@@ -78,6 +78,7 @@ const styles = {
         borderRadius: "5px",
         cursor: "pointer",
         fontWeight: "bold",
+        width: "300px"
     },
 };
 

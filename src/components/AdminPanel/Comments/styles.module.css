@@ -1,0 +1,175 @@
+.container {
+    padding: 20px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.commentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment.hidden {
+    background-color: #ffe4e1;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profilePicture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.commentText {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.movieId,
+.postDate,
+.status {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.hiddenReasons {
+    margin-top: 10px;
+}
+
+.hiddenReasons ul {
+    margin: 5px 0 0 15px;
+    padding: 0;
+}
+
+.hiddenReasons li {
+    font-size: 16px;
+    color: #ff0000;
+}
+
+.loading,
+.error {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+}
+
+.hideCommentsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.hideCommentsButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hideCommentsButton:hover {
+    background-color: #d32f2f;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hideCommentsButton:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    transition: opacity 0.3s ease;
+}
+
+.message.success {
+    color: #4caf50;
+}
+
+.message.error {
+    color: #f44336;
+}
+
+.message.info {
+    color: #2196f3;
+}
+
+.message.hidden {
+    opacity: 0;
+}
+
+.deleteCommentsContainer,
+.dismissCommentsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.deleteCommentsButton,
+.dismissCommentsButton {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.deleteCommentsButton {
+    background-color: coral;
+}
+
+.dismissCommentsButton:hover {
+    background-color: #1976d2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dismissCommentsButton:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}

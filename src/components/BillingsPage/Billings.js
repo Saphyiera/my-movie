@@ -4,7 +4,7 @@ import styles from './Billing.module.css';
 export default function Billing() {
     const [isDiamondMember, setIsDiamondMember] = useState(false);
     const [loading, setLoading] = useState(true);
-    const userId = localStorage.getItem('id'); // Get user ID from localStorage
+    const userId = localStorage.getItem('id');
 
     const checkCurrentPlan = async () => {
         if (!userId) {
@@ -91,7 +91,7 @@ export default function Billing() {
                     {[
                         'All free tier features',
                         'Suggestions from previous watched movies',
-                        'Semantic search',
+                        'Semantic search', 'AI chatbot'
                     ].map((feature, index) => (
                         <li key={index}>
                             <span className={styles.greenTick}>&#10003;</span>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import ProfileUpdate from "./ProfileUpdate";
 import { useNavigate } from "react-router-dom";
+import WatchedMovies from "../WatchedMovies/WatchedMovies";
 
 const ProfilePage = () => {
     const userId = localStorage.getItem('id');
@@ -181,6 +182,10 @@ const ProfilePage = () => {
             {
                 showUpdate &&
                 <ProfileUpdate userId={user.id} refresh={fetchUserData} />
+            }
+            {
+                userId &&
+                <WatchedMovies />
             }
         </div>
     );

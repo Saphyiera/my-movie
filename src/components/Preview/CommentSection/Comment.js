@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import ReportModal from './ReportModal';
+import { useNavigate } from 'react-router-dom';
 
 const Comment = ({ comment, onDelete }) => {
     const userId = localStorage.getItem('id');
+    const navigate = useNavigate();
 
     const { username, comment: commentText, postdate, reasons: commentReasons, profile_picture, hidden, commentid, userid } = comment;
     const [show, setShow] = useState(!hidden);
@@ -48,10 +50,10 @@ const Comment = ({ comment, onDelete }) => {
     return (
         <div className={styles.itemContainer}>
             <div className={styles.userContainer}>
-                <div className={styles.userAndPfp}>
+                <div className={styles.userAndPfp} onClick={() => navigate('/user/guest/' + userid)}>
 
                     <img
-                        src={profile_picture}
+                        src={profile_picture || "https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673.png"}
                         alt={`${username}'s profile`}
                         className={styles.pfpContainer}
                     />

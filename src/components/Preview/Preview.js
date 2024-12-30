@@ -7,6 +7,7 @@ import MovieReviewModal from './Review/MovieReviewModal';
 import RatingModal from '../Rating/RatingModal/RatingModal';
 import MarkButton from '../MarkedMoviesPage/MarkButton/MarkButton';
 import PlaylistButton from '../PlaylistPage/PlaylistModal/PlaylistButton';
+import RelatedMovies from '../Personalization/RelatedMovies/RelatedMovies';
 
 function Preview() {
     const { id } = useParams();
@@ -14,7 +15,6 @@ function Preview() {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [showRating, setShowRating] = useState(false);
-    const [showPlaylist, setShowPlaylist] = useState(false);
 
     const navigate = useNavigate();
 
@@ -129,6 +129,7 @@ function Preview() {
             }
 
             <CommentSection id={id} title="Reviews" />
+            <RelatedMovies movieId={id} />
         </>
     );
 }

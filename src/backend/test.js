@@ -1,12 +1,8 @@
 /*
     Admin
     CRUD movies
-    CRUD users
     CRUD comments
     CRUD actors
     CRUD genres
-    CRUD billings
-
-    User
-    Previous watched
 */
+

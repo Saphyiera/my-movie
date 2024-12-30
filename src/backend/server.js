@@ -10,11 +10,12 @@ const { checkAndGenerateKeyPair, PUBLIC_KEY_FILE, PRIVATE_KEY_FILE } = require('
 const cloudinary = require('cloudinary').v2;
 const uuid = require('uuid').v7;
 const paypal = require('./api/payment/paypal.js')
+require('dotenv').config()
 
 cloudinary.config({
-    cloud_name: 'dr4dgbmun',
-    api_key: '941885742989727',
-    api_secret: 'CrdXDrDE7CyVKmAvVsSlb97yJhM'
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const uploadImage = async (uri) => {
@@ -63,7 +64,7 @@ checkAndGenerateKeyPair();
 
 const privateKey = fs.readFileSync(PRIVATE_KEY_FILE, 'utf-8');
 
-const secretKey = 'e3174a437529d34686a4183e3382155cafd50e9d38de7b0dd468594c40d8cb5f';
+const secretKey = process.env.JWT_SECRET;
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -290,10 +291,8 @@ app.post('/user/verify-email', (req, res) => {
         return res.status(400).json({ message: "Email and ID are required" });
     }
 
-    // Create a verification link (Replace with your frontend or server's domain)
     const verificationUrl = `http://localhost:2811/user/verify?id=${id}`;
 
-    // Email options
     const mailOptions = {
         from: 'your-email@gmail.com',
         to: email,
@@ -305,7 +304,6 @@ app.post('/user/verify-email', (req, res) => {
         `
     };
 
-    // Send the email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error(error);
@@ -1369,6 +1367,116 @@ app.delete('/movie/marked', (req, res) => {
     })
 })
 
+app.get('/watching-movie/detail', async (req, res) => {
+    const { id } = req.query;
+
+    try {
+        const [movie] = await connection.promise().query(`SELECT title, type, synopsis, rating, \`count\`, release_year FROM movie WHERE id = ?`, [id]);
+
+        if (!movie.length) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+
+        if (movie[0].type.toLowerCase() === 'movie') {
+            return res.status(200).json({ data: movie[0] });
+        }
+
+        const [season] = await connection.promise().query(`SELECT seasonid, episodenumber FROM season WHERE episodeid = ?`, [id]);
+
+        if (!season.length) {
+            return res.status(404).json({ message: 'Season not found' });
+        }
+
+        const [series] = await connection.promise().query(`SELECT s.serieid, s.seasonnumber, m.title FROM serie s INNER JOIN movie m ON s.serieid = m.id WHERE s.seasonid = ?`, [season[0].seasonid]);
+
+        if (!series.length) {
+            return res.status(404).json({ message: 'Series not found' });
+        }
+
+        return res.json({
+            data: {
+                title: movie[0].title,
+                synopsis: movie[0].synopsis,
+                seasonnumber: series[0].seasonnumber,
+                episodenumber: season[0].episodenumber,
+                showname: series[0].title,
+                rating: movie[0].rating,
+                count: movie[0].count,
+                release_year: movie[0].release_year,
+                serieid: series[0].serieid,
+            }
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+app.post('/movie/watched', (req, res) => {
+    const { movieId, userId } = req.body;
+
+    connection.query(
+        `INSERT INTO watched_movie(movieid, userid, timewatch) 
+         VALUES(?, ?, CURRENT_TIMESTAMP) 
+         ON DUPLICATE KEY UPDATE timewatch = CURRENT_TIMESTAMP`,
+        [movieId, userId],
+        (err, result) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Internal server error' });
+            } else {
+                res.status(200).json({ data: result });
+            }
+        }
+    );
+});
+
+app.get('/movie/watched', (req, res) => {
+    const { userId, page = 1, limit = 10 } = req.query;
+    const offset = (page - 1) * limit;
+
+    connection.query(
+        `SELECT COUNT(*) AS total 
+         FROM watched_movie wm 
+         WHERE wm.userid = ?`,
+        [userId],
+        (countErr, countResult) => {
+            if (countErr) {
+                console.error(countErr);
+                res.status(500).json({ message: 'Internal server error' });
+            } else {
+                const totalMovies = countResult[0].total;
+                const totalPages = Math.ceil(totalMovies / limit);
+
+                connection.query(
+                    `SELECT m.id, m.title, m.poster_url 
+                     FROM movie m 
+                     INNER JOIN watched_movie wm ON m.id = wm.movieid 
+                     WHERE wm.userid = ? 
+                     LIMIT ? OFFSET ?`,
+                    [userId, parseInt(limit), parseInt(offset)],
+                    (err, result) => {
+                        if (err) {
+                            console.error(err);
+                            res.status(500).json({ message: 'Internal server error' });
+                        } else {
+                            res.status(200).json({
+                                data: result,
+                                totalMovies,
+                                totalPages,
+                                currentPage: parseInt(page),
+                            });
+                        }
+                    }
+                );
+            }
+        }
+    );
+});
+
+
 app.get('/playlist', (req, res) => {
     const { userId } = req.query;
 
@@ -1544,3 +1652,353 @@ app.post('/pay/current-plan', (req, res) => {
     });
 });
 
+app.get('/admin/users', (req, res) => {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = 100;
+    const offset = (page - 1) * limit;
+
+    connection.query(
+        `SELECT * FROM user ORDER BY id ASC LIMIT ? OFFSET ?`,
+        [limit, offset],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: "Internal Server Error" });
+            }
+
+            connection.query(`SELECT COUNT(*) AS total FROM user`, (err, countResult) => {
+                if (err) {
+                    return res.status(500).json({ error: "Internal Server Error" });
+                }
+
+                const totalUsers = countResult[0].total;
+                const totalPages = Math.ceil(totalUsers / limit);
+
+                res.json({
+                    data: result,
+                    meta: {
+                        currentPage: page,
+                        totalPages,
+                        totalUsers,
+                        perPage: limit,
+                    },
+                });
+            });
+        }
+    );
+});
+
+
+app.post('/admin/user/send-email', async (req, res) => {
+    const { email, message } = req.body;
+
+    if (!email || !message) {
+        return res.status(400).json({ error: "Email and message are required" });
+    }
+
+    const mailOptions = {
+        from: 'erinelinguester@gmail.com',
+        to: email,
+        subject: 'Email from Smothvie Admin',
+        text: message,
+    };
+
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent:', info.response);
+        res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).json({ error: 'Failed to send email' });
+    }
+});
+
+app.delete('/admin/user', (req, res) => {
+    const { id } = req.body;
+
+    if (!id) {
+        return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    const query = 'DELETE FROM user WHERE id = ?';
+
+    connection.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error deleting user:', err);
+            return res.status(500).json({ error: 'Failed to delete user' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    });
+});
+
+app.get('/admin/movies')
+app.put('/admin/movies')
+app.post('/admin/movie')
+app.put('/admin/movie')
+app.post('/admin/season')
+app.put('/admin/season')
+app.post('/admin/episode')
+app.put('/admin/episode')
+
+app.post('/admin/actors')
+app.put('/admin/actors')
+
+app.post('/admin/genres')
+app.put('/admin/genres')
+
+app.get('/admin/comments', async (req, res) => {
+    try {
+        const commentQuery = `
+            SELECT 
+                c.commentid, 
+                c.userid, 
+                c.movieid, 
+                c.comment, 
+                c.hidden, 
+                c.postdate, 
+                u.username, 
+                u.profile_picture
+            FROM 
+                comment c
+            INNER JOIN 
+                user u ON c.userid = u.id
+            ORDER BY 
+                c.postdate DESC;
+        `;
+
+        const hiddenReasonQuery = `
+            SELECT 
+                hc.commentid, 
+                hc.reason
+            FROM 
+                hidden_comment hc;
+        `;
+
+        const queryAsync = (sql) => {
+            return new Promise((resolve, reject) => {
+                connection.query(sql, (err, results) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve(results);
+                });
+            });
+        };
+
+        const comments = await queryAsync(commentQuery);
+        const hiddenReasons = await queryAsync(hiddenReasonQuery);
+
+        const hiddenReasonMap = hiddenReasons.reduce((map, hr) => {
+            if (!map[hr.commentid]) {
+                map[hr.commentid] = [];
+            }
+            map[hr.commentid].push(hr.reason);
+            return map;
+        }, {});
+
+        const results = comments.map((comment) => ({
+            ...comment,
+            hidden_reasons: hiddenReasonMap[comment.commentid] || [],
+        }));
+
+        res.status(200).json({
+            data: results,
+        });
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        res.status(500).json({
+            message: 'Failed to fetch comments.',
+        });
+    }
+});
+
+app.get('/admin/comments/reported', async (req, res) => {
+    try {
+        const queryAsync = (sql) => {
+            return new Promise((resolve, reject) => {
+                connection.query(sql, (err, results) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve(results);
+                });
+            });
+        };
+
+        const query = `
+            SELECT c.*, u.username, u.profile_picture
+            FROM comment c 
+            INNER JOIN user u ON u.id = c.userid
+            WHERE c.commentid IN (SELECT DISTINCT commentid FROM reported_comment)
+        `;
+
+        const reasonQuery = `
+            SELECT * 
+            FROM reported_comment
+        `;
+
+        const reportedComments = await queryAsync(query);
+        const reasons = await queryAsync(reasonQuery);
+
+        const reasonsMap = reasons.reduce((map, reason) => {
+            if (!map[reason.commentid]) {
+                map[reason.commentid] = [];
+            }
+            map[reason.commentid].push(reason.reason);
+            return map;
+        }, {});
+
+        const mergedComments = reportedComments.map((comment) => ({
+            ...comment,
+            reasons: reasonsMap[comment.commentid] || [],
+        }));
+
+        res.json({
+            success: true,
+            data: mergedComments,
+        });
+    } catch (error) {
+        console.error('Error fetching reported comments:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch reported comments.',
+        });
+    }
+});
+
+app.delete('/admin/comments', async (req, res) => {
+    try {
+        const { commentids } = req.body;
+
+        if (!Array.isArray(commentids) || commentids.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid or empty commentids array.',
+            });
+        }
+
+        const placeholders = commentids.map(() => '?').join(', ');
+        const query = `DELETE FROM comment WHERE commentid IN (${placeholders})`;
+
+        const result = await new Promise((resolve, reject) => {
+            connection.query(query, commentids, (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results);
+            });
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `${result.affectedRows} comment(s) deleted successfully.`,
+        });
+    } catch (error) {
+        console.error('Error deleting comments:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to delete comments.',
+        });
+    }
+});
+
+app.delete('/admin/comment/hide', async (req, res) => {
+    try {
+        const comments = req.body;
+
+        if (!Array.isArray(comments) || comments.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid or empty comments array.',
+            });
+        }
+
+        const updateCommentQuery = `UPDATE comment SET hidden = 1 WHERE commentid = ?`;
+        const insertReasonQuery = `INSERT INTO hidden_comment (commentid, reason) VALUES (?, ?) ON DUPLICATE KEY UPDATE reason = VALUES(reason)`;
+
+        await new Promise((resolve, reject) => {
+            connection.beginTransaction(err => {
+                if (err) reject(err);
+                else resolve();
+            });
+        });
+
+        for (const { commentid, reasons } of comments) {
+            if (!commentid || !Array.isArray(reasons) || reasons.length === 0) {
+                throw new Error(`Invalid commentid or reasons for commentid: ${commentid}`);
+            }
+
+            await new Promise((resolve, reject) => {
+                connection.query(updateCommentQuery, [commentid], (err, result) => {
+                    if (err) reject(err);
+                    else resolve(result);
+                });
+            });
+
+            for (const reason of reasons) {
+                await new Promise((resolve, reject) => {
+                    connection.query(insertReasonQuery, [commentid, reason], (err, result) => {
+                        if (err) reject(err);
+                        else resolve(result);
+                    });
+                });
+            }
+        }
+
+        await new Promise((resolve, reject) => {
+            connection.commit(err => {
+                if (err) reject(err);
+                else resolve();
+            });
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `${comments.length} comment(s) updated and reasons added successfully.`,
+        });
+    } catch (error) {
+        await new Promise((resolve, reject) => {
+            connection.rollback(() => resolve());
+        });
+
+        console.error('Error hiding comments:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to hide comments and insert reasons.',
+        });
+    }
+});
+
+app.delete('/admin/comments/reported/dismiss', async (req, res) => {
+    const { commentids } = req.body;
+
+    if (!Array.isArray(commentids) || commentids.length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid or missing comment IDs.",
+        });
+    }
+
+    const query = `
+        DELETE FROM reported_comment
+        WHERE commentid IN (?)
+    `;
+
+    try {
+        const [result] = await connection.promise().query(query, [commentids]);
+        res.status(200).json({
+            success: true,
+            message: `${result.affectedRows} reported comments were successfully dismissed.`,
+        });
+    } catch (error) {
+        console.error("Error rejecting reported comments:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to reject reported comments.",
+        });
+    }
+});

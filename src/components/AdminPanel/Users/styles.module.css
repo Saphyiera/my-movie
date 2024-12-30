@@ -1,0 +1,140 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.loading {
+    font-size: 18px;
+    text-align: center;
+    color: #666;
+}
+
+.error {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+}
+
+.userList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.userCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userCard:hover {
+    cursor: pointer;
+}
+
+.profilePicture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.username {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.userInfo {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.paginationButton {
+    padding: 10px 15px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.paginationButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.paginationInfo {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sendEmailButton {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.sendEmailButton:hover {
+    background-color: #45a049;
+}
+
+.sendEmailButton:active {
+    background-color: #3e8e41;
+}
+
+.secondaryButton {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.secondaryButton:hover {
+    background-color: #d32f2f;
+}
+
+.secondaryButton:active {
+    background-color: #b71c1c;
+}
+
+.buttonContainer {
+    flex-direction: column;
+    display: flex;
+}

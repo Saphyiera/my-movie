@@ -19,8 +19,8 @@ const EpisodeNavigation = ({ id }) => {
                 const prevResponse = await fetch(`http://localhost:2811/movie/previous-episode?id=${id}`);
                 const prevData = await prevResponse.json();
 
-                setNextEpisode(nextData[0].nextepisodeid || null);
-                setPrevEpisode(prevData[0].previousepisodeid || null);
+                setNextEpisode(nextData.nextepisodeid || null);
+                setPrevEpisode(prevData.previousepisodeid || null);
             } catch (error) {
                 console.error('Error fetching episode data:', error);
             } finally {

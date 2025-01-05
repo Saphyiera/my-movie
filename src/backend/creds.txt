@@ -9,3 +9,136 @@ Skibidi123.
 
 Han Nari
 Cyberpunk2077.
+
+
+
+|-- api                                                                                                                                                      
+    |-- payment
+        |-- paypal.js
+|-- controllers
+    |-- Actor.js
+    |-- Base.js
+    |-- Comment.js
+    |-- DiamondMember.js
+    |-- Episode.js
+    |-- Genre.js
+    |-- MarkedMovies.js
+    |-- Movie.js
+    |-- MovieDetails.js
+    |-- Playlist.js
+    |-- Review.js
+    |-- Season.js
+    |-- User.js
+    |-- WatchedMovie.js
+|-- db
+    |-- model
+        |-- database.json
+    |-- connect.js
+    |-- imageUploadConfig.js
+|-- python
+    |-- chatbot
+        |-- data.txt
+        |-- gen_data.py
+        |-- instruction.txt
+        |-- test.js
+        |-- whoami.txt
+    |-- spam_model
+        |-- model.joblib
+        |-- tfidf_vectorizer.joblib
+    |-- spoiler_model
+        |-- model.joblib
+        |-- tfidf_vectorizer.joblib
+    |-- movies.json
+    |-- related-movies.json
+    |-- requirement.txt
+    |-- server.py
+|-- routes
+|-- scrapper
+    |-- data
+        |-- episodes.json
+        |-- netflixDetails.json
+        |-- seasons-detail.json
+        |-- seasons.json
+        |-- shows.json
+        |-- the-flash-seasons.json
+        |-- the_flash.json
+    |-- scrappers
+        |-- pushDetail.js
+        |-- scap_serie.js
+        |-- scrap-episodes.js
+        |-- scrap-seasons-detail.js
+        |-- scrap-seasons.js
+        |-- scrap_actor.js
+        |-- scrap_detail.js
+        |-- scrap_genre.js
+        |-- scrap_summary.js
+        |-- theFlash.js
+|-- creds.txt
+|-- keyGen.js
+|-- server.js
+|-- test.js
+
+
+
+                |-- backend
+                    |-- api
+                        |-- payment
+                    |-- controllers
+                    |-- db
+                    |-- python
+                        |-- spam_model
+                        |-- spoiler_model
+                        |-- server.py
+                    |-- server.js
+
+
+
+                    |-- components
+                        |-- AccountPage
+                            |-- Account
+                            |-- LoginPage
+                            |-- ProfilePage
+                            |-- SignupPage
+                            |-- WatchedMovies
+                        |-- AdminPanel
+                            |-- Actors
+                            |-- Comments
+                            |-- Genres
+                            |-- Movies
+                            |-- Users
+                                |-- ChangePassword
+                                |-- SendAdminMailModal
+                        |-- BillingsPage
+                        |-- HomePage
+                            |-- MoviesSection
+                            |-- SearchBar
+                        |-- MarkedMoviesPage
+                            |-- MarkButton
+                            |-- MarkedMovies
+                        |-- Personalization
+                            |-- Chatbot
+                            |-- MoviesSuggestion
+                            |-- RelatedMovies
+                        |-- PlaylistPage
+                            |-- Playlist
+                            |-- PlaylistModal
+                        |-- Preview
+                            |-- CommentSection
+                            |-- Review
+                            |-- SeasonSection
+                                |-- Episodes
+                                |-- Season
+                        |-- Rating
+                            |-- RatingModal
+                        |-- Search
+                            |-- Actor
+                            |-- Alphabet
+                            |-- Genre
+                        |-- Utils
+                            |-- Footer
+                                |-- Links
+                            |-- Header
+                            |-- Notification
+                            |-- Padding
+                        |-- WatchPage
+                            |-- Detail

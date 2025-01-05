@@ -15,6 +15,8 @@ const WatchPage = () => {
         height: window.innerHeight,
     });
 
+    console.log(videoUrl)
+
     useEffect(() => {
         const handleResize = () => {
             setDimensions({

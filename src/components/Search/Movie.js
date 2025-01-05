@@ -17,7 +17,7 @@ const Movie = (props) => {
                     <p className={styles.synopsis}>{synopsis}</p>
                 </div>
                 <p className={styles.releaseYear}>Release year: {release_year}</p>
-                <p className={styles.rating}>Rating: {rating / count}/10 by {count} viewers</p>
+                <p className={styles.rating}>Rating: {parseFloat(rating / count).toFixed(1)}/10 by {count} viewers</p>
             </div>
         </div>
     );

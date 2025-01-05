@@ -63,7 +63,7 @@ const Playlist = ({ playlistId, title, onDelete }) => {
                 }
             } else {
                 const errorData = await response.json();
-                console.error('Error removing playlist:', errorData.message || 'Failed to remove playlist.');
+                console.error('Error removing playlist:', errorData.message || 'Failed to remove playlist. Maybe try to remove all movies from that playlist first!');
                 alert('Failed to remove playlist.');
             }
         } catch (err) {

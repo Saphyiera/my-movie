@@ -2,7 +2,7 @@ import { Outlet, NavLink } from "react-router-dom";
 import { FaHome, FaFilm, FaUser, FaStar, FaList, FaWallet } from "react-icons/fa";
 import { GiFilmProjector } from "react-icons/gi";
 
-const SearchLayout = () => {
+const Layout = () => {
     const userId = localStorage.getItem("id");
 
     return (
@@ -13,7 +13,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="/"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaHome style={styles.icon} /> Home
                         </NavLink>
@@ -22,7 +22,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="genres"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <GiFilmProjector style={styles.icon} /> Genres
                         </NavLink>
@@ -31,7 +31,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="actors"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaFilm style={styles.icon} /> Actors
                         </NavLink>
@@ -40,7 +40,7 @@ const SearchLayout = () => {
                         <NavLink
                             to={userId ? "user/profile" : "user/login"}
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaUser style={styles.icon} /> Account
                         </NavLink>
@@ -49,7 +49,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="marked"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaStar style={styles.icon} /> Marked Movies
                         </NavLink>
@@ -58,7 +58,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="playlists"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaList style={styles.icon} /> Playlists
                         </NavLink>
@@ -67,7 +67,7 @@ const SearchLayout = () => {
                         <NavLink
                             to="billings"
                             style={styles.link}
-                            activeStyle={styles.activeLink}
+                            activestyle={styles.activeLink}
                         >
                             <FaWallet style={styles.icon} /> Billings
                         </NavLink>
@@ -125,4 +125,4 @@ const styles = {
     },
 };
 
-export default SearchLayout;
+export default Layout;
